@@ -3,6 +3,7 @@ dataset/
 *.h5
 *.pt
 *.onnx
+test_images/
 
 # Ignore system files
 __pycache__/
