@@ -217,7 +217,7 @@ weighted avg       0.96      0.96      0.96      1347
 
 <div align="center">
 
-![Safe Roads Banner](https://raw.githubusercontent.com/Safe-Roads/pothole-detection-model/main/assets/matrix.png)
+![Safe Roads Banner](https://raw.githubusercontent.com/Safe-Roads/pothole-detection-model/main/assets/confusion_matrix_v2.png)
 
 *Confusion matrix showing model predictions vs. actual labels on validation data*
 
