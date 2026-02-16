@@ -1,5 +1,7 @@
  <div align="center">
 
+![Banner](https://github.com/Safe-Roads/pothole-detection-model/banner.png)
+
 # 🛣️ Pothole Detection Model
 
 **ML-powered computer vision system for automated pothole detection on roads**
@@ -79,14 +81,14 @@ Dense(1, Sigmoid) [Output]
 
 ### Architecture Details
 
-| Layer Type | Parameters | Activation | Purpose |
-|-----------|-----------|------------|---------|
-| Conv2D (32 filters) | 3x3 kernel | ReLU | Edge detection |
-| Conv2D (64 filters) | 3x3 kernel | ReLU | Pattern recognition |
-| Conv2D (128 filters) | 3x3 kernel | ReLU | Complex features |
-| Conv2D (256 filters) | 3x3 kernel | ReLU | Deep features |
-| Dense (128 units) | - | ReLU | Feature fusion |
-| Dense (1 unit) | - | Sigmoid | Binary output |
+| Layer Type           | Parameters | Activation | Purpose             |
+| -------------------- | ---------- | ---------- | ------------------- |
+| Conv2D (32 filters)  | 3x3 kernel | ReLU       | Edge detection      |
+| Conv2D (64 filters)  | 3x3 kernel | ReLU       | Pattern recognition |
+| Conv2D (128 filters) | 3x3 kernel | ReLU       | Complex features    |
+| Conv2D (256 filters) | 3x3 kernel | ReLU       | Deep features       |
+| Dense (128 units)    | -          | ReLU       | Feature fusion      |
+| Dense (1 unit)       | -          | Sigmoid    | Binary output       |
 
 **Total Parameters**: ~1.2M trainable parameters
 
@@ -112,7 +114,7 @@ weighted avg       0.96      0.96      0.96      1347
 ### Visual Results
 
 ![Confusion Matrix](confusion_matrix_v2.png)
-*Confusion matrix showing model predictions vs. actual labels*
+_Confusion matrix showing model predictions vs. actual labels_
 
 ### Key Insights
 
@@ -134,18 +136,21 @@ weighted avg       0.96      0.96      0.96      1347
 ### Setup Instructions
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/Safe-Roads/pothole-detection-model.git
 cd pothole-detection-model
 ```
 
 2. **Create a virtual environment** (recommended)
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. **Install dependencies**
+
 ```bash
 pip install tensorflow opencv-python numpy matplotlib scikit-learn
 ```
@@ -169,6 +174,7 @@ python augment_data.py
 ```
 
 **Configuration**:
+
 - Input folder: `Primary dataset/`
 - Output folder: `Augmented_Dataset/`
 - Augmentation factor: 30 images per original image
@@ -183,6 +189,7 @@ python train_model_final.py
 ```
 
 **Training Configuration**:
+
 - Image size: 224×224 pixels
 - Batch size: 32
 - Max epochs: 25 (with early stopping)
@@ -190,6 +197,7 @@ python train_model_final.py
 - Loss function: Binary cross-entropy
 
 **Outputs**:
+
 - `best_model.keras` - Trained model file
 - `training_results.png` - Training/validation accuracy and loss plots
 
@@ -202,11 +210,13 @@ python predict_pothole.py
 ```
 
 You'll be prompted to enter the image path:
+
 ```
 Enter the path to your image (e.g., test.jpg): path/to/your/image.jpg
 ```
 
 **Output**:
+
 ```
 ------------------------------
 RESULT: POTHOLE
@@ -235,6 +245,7 @@ python evaluate_model.py
 ```
 
 This generates:
+
 - Classification report (`model_report_final.txt`)
 - Confusion matrix visualization (`confusion_matrix_v2.png`)
 
@@ -271,11 +282,13 @@ pothole-detection-model/
 ## 🔬 How It Works
 
 ### 1. **Data Preparation**
+
 - Images are organized into two folders: `normal/` and `potholes/`
 - Data augmentation creates variations to improve model generalization
 - Images are resized to 224×224 pixels and normalized to [0,1]
 
 ### 2. **Model Training**
+
 - 80/20 train-validation split
 - Class weights computed to handle imbalanced datasets
 - Batch normalization stabilizes training
@@ -283,6 +296,7 @@ pothole-detection-model/
 - Early stopping restores best weights if validation loss increases
 
 ### 3. **Prediction**
+
 - Input image is resized and preprocessed
 - Model outputs a probability score (0-1)
 - **Score > 0.5** → Pothole detected
@@ -290,6 +304,7 @@ pothole-detection-model/
 - Confidence percentage is calculated
 
 ### 4. **Evaluation**
+
 - Confusion matrix shows true/false positives and negatives
 - Precision, recall, and F1-score measure classification quality
 
@@ -299,14 +314,14 @@ pothole-detection-model/
 
 ### Hyperparameters
 
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| Image Size | 224×224 | Input resolution |
-| Batch Size | 32 | Samples per gradient update |
-| Learning Rate | Default (Adam) | Optimizer learning rate |
-| Dropout Rate | 0.5 | Regularization strength |
-| Early Stopping Patience | 5 epochs | Stop if no improvement |
-| Validation Split | 20% | Portion of data for validation |
+| Parameter               | Value          | Description                    |
+| ----------------------- | -------------- | ------------------------------ |
+| Image Size              | 224×224        | Input resolution               |
+| Batch Size              | 32             | Samples per gradient update    |
+| Learning Rate           | Default (Adam) | Optimizer learning rate        |
+| Dropout Rate            | 0.5            | Regularization strength        |
+| Early Stopping Patience | 5 epochs       | Stop if no improvement         |
+| Validation Split        | 20%            | Portion of data for validation |
 
 ### Data Augmentation Techniques
 
@@ -336,13 +351,13 @@ This ensures the minority class receives higher weight during training.
 ✅ High accuracy across both classes  
 ✅ Robust to variations in lighting and angles  
 ✅ Fast inference time (~50ms per image on CPU)  
-✅ Generalizes well to unseen data  
+✅ Generalizes well to unseen data
 
 ### Limitations
 
 ⚠️ Requires clear images (poor quality may affect accuracy)  
 ⚠️ Trained on specific road types (may need retraining for different regions)  
-⚠️ Binary classification only (doesn't assess pothole severity)  
+⚠️ Binary classification only (doesn't assess pothole severity)
 
 ### Future Improvements
 
@@ -369,11 +384,13 @@ scikit-learn>=1.2.0
 ### Hardware Recommendations
 
 **Minimum**:
+
 - CPU: 4 cores
 - RAM: 8 GB
 - Storage: 2 GB
 
 **Recommended**:
+
 - GPU: NVIDIA with CUDA support
 - RAM: 16 GB
 - Storage: 5 GB (for dataset)
@@ -397,7 +414,6 @@ We welcome contributions! Here's how you can help:
 - Create web/mobile interface
 - Expand dataset
 - Optimize inference speed
-
 
 ## 📞 Contact & Support
 
