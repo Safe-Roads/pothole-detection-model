@@ -1,6 +1,6 @@
  <div align="center">
 
-![Banner](https://github.com/Safe-Roads/pothole-detection-model/banner.png)
+![Banner](https://github.com/Safe-Roads/pothole-detection-model/assets/banner.png)
 
 # 🛣️ Pothole Detection Model
 
